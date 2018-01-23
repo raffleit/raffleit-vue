@@ -1,0 +1,38 @@
+version: 2
+jobs:
+  build:
+    branches:
+      only:
+        - master
+    docker:
+      - image: circleci/node:8.9.4
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - run: yarn test
+      - run: yarn run build
+      - run: git checkout --orphan gh-pages
+      - run: git rm -rf .
+      - run: rm -rf node_modules/
+      - run: mv build/* .
+      - run: git checkout master .circleci
+      - run: git config --global user.email "andersems@gmail.com"
+      - run: git config --global user.name "Anders Emil Salvesen"
+      - run: echo vue.raffleit.abbsnabb.com > CNAME
+      - run: git add .
+      - run: git commit -m "Github pages"
+      - run: git push origin gh-pages --force
