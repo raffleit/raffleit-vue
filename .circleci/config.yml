@@ -23,7 +23,6 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: yarn test
       - run: yarn run build
       - run: git checkout --orphan gh-pages
       - run: git rm -rf .
