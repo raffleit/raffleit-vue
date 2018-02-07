@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Participants from '@/components/Participants'
+import Drawing from '@/components/Drawing'
 
 Vue.use(Router)
 
@@ -15,5 +16,10 @@ export default new Router({
       name: 'Participants',
       component: Participants
     },
+    {
+      path: '/Drawing',
+      name: 'Drawing',
+      component: Drawing
+    }
   ]
 })

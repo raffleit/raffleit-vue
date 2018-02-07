@@ -38,6 +38,14 @@ const mutations = {
   },
   [types.REMOVE_PARTICIPANT] (state, {id}) {
     state.participants = state.participants.filter(p => p.id !== id)
+  },
+  [types.DECREASE_TICKETS_FOR_PARTICIPANT] (state, {id}) {
+    state.participants = state.participants.map((participant) => {
+      if (participant.id !== id) {
+        return participant
+      }
+      return {...participant, numberOfTickets: participant.numberOfTickets - 1}
+    })
   }
 }
 
