@@ -1,8 +1,17 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+  <div class="container">
+    <ul class="nav nav-pills">
+      <li class="active">
+        <a href="#/Participants">Participants</a>
+      </li>
+      <li>
+        <a href="#/Drawing">Drawing</a>
+      </li>
+    </ul>
+    <div class="row" style="margin-top: 2em">
+      <router-view/>
+    </div>
+    </div>
 </template>
 
 <script>
