@@ -19,9 +19,11 @@ const getters = {
 
 // actions
 const actions = {
-  addParticipant ({commit, state}) {
+  addParticipant ({commit, state}, e) {
     if (state.form.name && state.form.numberOfTickets) {
       commit(types.ADD_PARTICIPANT)
+      // eslint-disable-next-line
+      e.target[0].focus()
     } else {
       if (!state.form.name) {
         commit(types.FORM_ERROR, {key: 'name'})
