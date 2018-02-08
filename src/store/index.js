@@ -12,16 +12,16 @@ const store = new Vuex.Store({
   modules
 })
 
-if (module.hot) {
-  module.hot.accept([
-    './actions',
-    './modules'
-  ], () => {
-    store.hotUpdate({
-      actions: require('./actions'),
-      modules: require('./modules')
-    })
-  })
-}
+// if (module.hot) {
+//   module.hot.accept([
+//     './actions',
+//     './modules'
+//   ], () => {
+//     store.hotUpdate({
+//       actions: require('./actions'),
+//       modules: require('./modules')
+//     })
+//   })
+// }
 
 export default store

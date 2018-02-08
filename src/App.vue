@@ -1,5 +1,8 @@
 <template>
   <div class="container">
+    <div class="reset">
+      <button class="btn btn-link" @click="reset">Reset</button>
+    </div>
     <ul class="nav nav-pills">
       <router-link tag="li" to="Participants">
         <a>Participants</a>
@@ -15,18 +18,18 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
-  name: 'App'
+  name: 'App',
+  methods: {
+    ...mapActions([
+      'reset'
+    ])
+  }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style scoped>
+
 </style>

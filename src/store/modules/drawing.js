@@ -26,6 +26,10 @@ const actions = {
 const mutations = {
   [types.ADD_WINNER] (state, {winner}) {
     state.winners.unshift(winner)
+  },
+  [types.RESET] (state) {
+    let initialState = defaultState()
+    Object.keys(initialState).forEach(key => { state[key] = initialState[key] })
   }
 }
 

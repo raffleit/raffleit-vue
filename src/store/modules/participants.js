@@ -63,6 +63,10 @@ const mutations = {
   },
   [types.FORM_ERROR] (state, {key}) {
     state.form.errors[key] = true
+  },
+  [types.RESET] (state) {
+    let initialState = defaultState()
+    Object.keys(initialState).forEach(key => { state[key] = initialState[key] })
   }
 }
 
