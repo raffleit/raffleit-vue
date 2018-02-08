@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <ul class="nav nav-pills">
-      <li class="active">
-        <a href="#/Participants">Participants</a>
-      </li>
-      <li>
-        <a href="#/Drawing">Drawing</a>
-      </li>
+      <router-link tag="li" to="Participants">
+        <a>Participants</a>
+      </router-link>
+      <router-link tag="li" to="/Drawing">
+        <a>Drawing</a>
+      </router-link>
     </ul>
     <div class="row" style="margin-top: 2em">
       <router-view/>
