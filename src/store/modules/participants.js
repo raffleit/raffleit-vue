@@ -5,7 +5,11 @@ const defaultState = () => ({
   participants: [],
   form: {
     name: '',
-    numberOfTickets: null
+    numberOfTickets: null,
+    errors: {
+      name: false,
+      numberOfTickets: false
+    }
   }
 })
 
@@ -15,8 +19,17 @@ const getters = {
 
 // actions
 const actions = {
-  addParticipant ({commit}) {
-    commit(types.ADD_PARTICIPANT)
+  addParticipant ({commit, state}) {
+    if (state.form.name && state.form.numberOfTickets) {
+      commit(types.ADD_PARTICIPANT)
+    } else {
+      if (!state.form.name) {
+        commit(types.FORM_ERROR, {key: 'name'})
+      }
+      if (!state.form.numberOfTickets) {
+        commit(types.FORM_ERROR, {key: 'numberOfTickets'})
+      }
+    }
   },
   editForm ({commit}, {key, value}) {
     commit(types.EDIT_FORM, {key, value})
@@ -47,6 +60,9 @@ const mutations = {
       }
       return {...participant, numberOfTickets: participant.numberOfTickets - 1}
     })
+  },
+  [types.FORM_ERROR] (state, {key}) {
+    state.form.errors[key] = true
   }
 }
 

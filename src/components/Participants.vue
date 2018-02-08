@@ -5,9 +5,10 @@
         <div class="form-group col-md-6">
           <input type="text"
                  name="name"
+                 class="form-control"
+                 v-bind:class="{ inputError: form.errors.name }"
                  @input="editForm"
                  :value="form.name"
-                 class="form-control"
                  placeholder="Name"
           />
         </div>
@@ -15,6 +16,7 @@
           <input type="number"
                  name="numberOfTickets"
                  class="form-control"
+                 v-bind:class="{ inputError: form.errors.numberOfTickets }"
                  @input="editForm"
                  :value="form.numberOfTickets"
                  placeholder="# tickets"
@@ -78,5 +80,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .inputError {
+    border: 1px solid red;
+  }
 </style>
