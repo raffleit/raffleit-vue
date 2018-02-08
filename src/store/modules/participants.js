@@ -15,8 +15,8 @@ const getters = {
 
 // actions
 const actions = {
-  addParticipant ({commit}, participant) {
-    commit(types.ADD_PARTICIPANT, {participant})
+  addParticipant ({commit}) {
+    commit(types.ADD_PARTICIPANT)
   },
   editForm ({commit}, {key, value}) {
     commit(types.EDIT_FORM, {key, value})
@@ -29,7 +29,8 @@ const actions = {
 // mutations
 const mutations = {
   [types.ADD_PARTICIPANT] (state) {
-    const participant = {...state.form, id: guid()}
+    const numberOfTickets = parseInt(state.form.numberOfTickets, 10)
+    const participant = {name: state.form.name, numberOfTickets, id: guid()}
     state.form = defaultState().form
     state.participants.push(participant)
   },
